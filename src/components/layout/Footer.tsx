@@ -4,7 +4,7 @@ import TermsPopover from '../TermPopover';
 import FAQPopover from '../FAQPopover';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Twitter from "@/assets/X.svg"
+import { FaXTwitter } from "react-icons/fa6";
 
 const Footer = () => {
     const [isPrivacyOpen, setPrivacyOpen] = useState<boolean>(false);
@@ -16,22 +16,10 @@ const Footer = () => {
             <footer className="w-full h-[92px] flex flex-col lg:flex-row justify-between items-center lg:p-10 mb-10 gap-4 font-Chillax relative z-20">
                 <div className="flex justify-center items-center gap-4 lg:gap-5 flex-wrap">
                     <Link
-                        to="/blogs"
-                        className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
-                    >
-                        Blogs
-                    </Link>
-                    <Link
                         to="/privacy"
                         className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
                     >
                         Privacy
-                    </Link>
-                    <Link
-                        to="/csae"
-                        className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
-                    >
-                        Csae
                     </Link>
                     <Link
                         to="/terms-and-conditions"
@@ -40,10 +28,17 @@ const Footer = () => {
                         Terms
                     </Link>
                     <Link
+                        to="/csae"
+                        className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
+                    >
+                        CSAE
+                    </Link>
+                   
+                    <Link
                         to="/eula"
                         className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
                     >
-                        Eula
+                        EULA
                     </Link>
                     <Link
                         to="/faq"
@@ -55,7 +50,7 @@ const Footer = () => {
                         href="https://www.linkedin.com/company/jamme_app"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-[#101010] "
+                        className="text-[#101010] hover:text-[#ff4d00] "
                     >
                         <FaLinkedin size={24} />
                     </a>
@@ -65,7 +60,7 @@ const Footer = () => {
                         rel="noopener noreferrer"
                         className="text-[#101010] hover:text-[#ff4d00]"
                     >
-                        <img src={Twitter} alt="X" />
+                        <FaXTwitter size={24} />
                     </a>
                     <a
                         href="https://www.instagram.com/jamme_social/"
@@ -86,14 +81,6 @@ const Footer = () => {
                     >
                         Voiaxis Ltd.
                     </a>{' '}
-                    <button
-                        onClick={() => alert('EULA clicked!')}
-                        type="button"
-                        className="text-[#232323] bg-transparent border-none outline-none text-sm transition-colors duration-300 hover:text-[#ff4d00]"
-                        title="End User License Agreement"
-                    >
-                        EULA
-                    </button>
                 </p>
             </footer>
 
