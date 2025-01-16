@@ -305,7 +305,7 @@ const PrivacyPolicy: React.FC = () => {
               Privacy Policy
             </h1>
             <span className="text-sm font-normal tracking-wider text-gray-600">
-              Last Updated: January 5, 2024
+              Last Updated: January 5, 2025
             </span>
           </div>
         </div>

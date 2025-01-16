@@ -1,5 +1,6 @@
 import Contact from '@/components/internal/contact-us/contact-us';
 import BlogApp from '@/pages/Csae';
+import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
 import HomePage from '@/pages/HomePage';
 import JammeBlogs from '@/pages/JammeBlogs';
@@ -20,6 +21,7 @@ const RoutesIndex = () => {
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms-and-conditions" element={<TermConditionPage />} />
         <Route path="/faq" element={<FaqPage />} />
+        <Route path="/eula" element={<EulaPage />} />
       </Routes>
     </Router>
   );

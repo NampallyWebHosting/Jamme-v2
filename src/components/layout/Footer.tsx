@@ -40,6 +40,12 @@ const Footer = () => {
                         Terms
                     </Link>
                     <Link
+                        to="/eula"
+                        className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
+                    >
+                        Eula
+                    </Link>
+                    <Link
                         to="/faq"
                         className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
                     >
