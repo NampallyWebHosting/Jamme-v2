@@ -4,8 +4,8 @@ import SoonImage from '@/assets/Soon.png';        // Import the Soon.png image
 import GooglePlayImage from '@/assets/GooglePlay.png';  // Import the GooglePlay.png image
 import AppStoreImage from '@/assets/AppStore.png';  // Import the AppStore.png image
 import BeatsGif from '@/assets/Beats.gif';          // Import Beats.gif from assets
-import { Button } from './ui/button';
 import { ReactTyped } from 'react-typed'; // Import ReactTyped
+import { Button } from '@/components/ui/button';
 const Appdownload = () => {
     const [isDialogOpen, setDialogOpen] = useState(false);
 
@@ -80,7 +80,6 @@ const Appdownload = () => {
                         </div>
                     </DialogContent>
                 </Dialog>
-
             </div>
         </div>
     );

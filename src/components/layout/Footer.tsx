@@ -1,7 +1,7 @@
 import { FaLinkedin, FaInstagram } from 'react-icons/fa'; // Importing LinkedIn and Instagram icons from react-icons/fa
-import PrivacyPopover from '../PrivarcyPopover';
-import TermsPopover from '../TermPopover';
-import FAQPopover from '../FAQPopover';
+import PrivacyPopover from '../internal/popover/PrivarcyPopover';
+import TermsPopover from '../internal/popover/TermPopover';
+import FAQPopover from '../internal/popover/FAQPopover';
 import { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FaXTwitter } from "react-icons/fa6";
@@ -33,7 +33,7 @@ const Footer = () => {
                     >
                         CSAE
                     </Link>
-                   
+
                     <Link
                         to="/eula"
                         className="text-[#101010] text-sm transition-colors duration-300 hover:text-[#ff4d00]"
@@ -46,6 +46,34 @@ const Footer = () => {
                     >
                         FAQ'S
                     </Link>
+                    <div className=' hidden lg:flex justify-center items-center gap-4 lg:gap-5 flex-wrap'>
+                        <a
+                            href="https://www.linkedin.com/company/jamme_app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#101010] hover:text-[#ff4d00] "
+                        >
+                            <FaLinkedin size={24} />
+                        </a>
+                        <a
+                            href="https://twitter.com/jamme_social"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#101010] hover:text-[#ff4d00]"
+                        >
+                            <FaXTwitter size={24} />
+                        </a>
+                        <a
+                            href="https://www.instagram.com/jamme_social/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-[#101010] hover:text-[#ff4d00]"
+                        >
+                            <FaInstagram size={24} />
+                        </a>
+                    </div>
+                </div>
+                <div className=' lg:hidden flex justify-center items-center gap-4 lg:gap-5 flex-wrap'>
                     <a
                         href="https://www.linkedin.com/company/jamme_app"
                         target="_blank"

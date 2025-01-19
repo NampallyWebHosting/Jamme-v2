@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Footer from "@/components/layout/Footer";
 import Header from "@/components/layout/Header";
-import MainContent from "@/components/MainContent";
-import Appdownload from "@/components/Appdownload";
+import MainContent from "@/components/internal/main-screen/MainContent";
+import Appdownload from "@/components/internal/main-screen/Appdownload";
 const ScrollColorChanger: React.FC = () => {
   const [scrollPercent, setScrollPercent] = useState(0);
   const [, setColorName] = useState("Warm Orange");

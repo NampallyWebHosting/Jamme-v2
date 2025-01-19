@@ -62,13 +62,13 @@ const CreateUserForm: React.FC = () => {
   return (
     <>
       <SecondaryHeader />
-      <div className="w-full min-h-screen font-Chillax">
+      <div className="w-full min-h-screen font-Chillax p-2">
         <Card className="max-w-3xl mx-auto p-6 bg-white rounded-lg shadow-md mb-20">
           <div className="contact__logo w-full flex flex-col justify-center items-center">
             <img
               src={JammelOGO}
               alt="Jamme"
-              className="w-24 object-cover "
+              className=" w-20 lg:w-24 object-cover "
             />
             <h1 className="text-2xl font-semibold mb-4">Jamme Support</h1>
           </div>
