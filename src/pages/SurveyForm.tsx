@@ -1,4 +1,5 @@
-import SurveyForm from "@/components/internal/survey/survey"
+import SurveyForm from "@/components/internal/survey/Survey"
+
 const SurveyFormPage = () => {
   return (
   <SurveyForm/>
