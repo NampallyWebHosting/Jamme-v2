@@ -18,7 +18,7 @@ const RoutesIndex = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/surveyform" element={<SurveyForm />} />
         <Route path="/blogs" element={<JammeBlogs />} />
-        <Route path="/contact-us" element={<ContactusPage />} />
+        {/* <Route path="/contact-us" element={<ContactusPage />} /> */}
         <Route path="/csae" element={<BlogApp />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms-and-conditions" element={<TermConditionPage />} />
