@@ -1,5 +1,5 @@
 import ConfirmationPage from '@/pages/ConfirmationPage';
-import ContactusPage from '@/pages/ContactusPage';
+// import ContactusPage from '@/pages/ContactusPage';
 import BlogApp from '@/pages/Csae';
 import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
