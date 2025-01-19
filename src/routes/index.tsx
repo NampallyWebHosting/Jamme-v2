@@ -1,4 +1,4 @@
-import Contact from '@/components/internal/contact-us/Contact-us';
+import ContactusPage from '@/pages/Contact-usPage';
 import BlogApp from '@/pages/Csae';
 import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
@@ -17,7 +17,7 @@ const RoutesIndex = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/surveyform" element={<SurveyForm />} />
         <Route path="/blogs" element={<JammeBlogs />} />
-        <Route path="/contact-us" element={<Contact />} />
+        <Route path="/contact-us" element={<ContactusPage />} />
         <Route path="/csae" element={<BlogApp />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms-and-conditions" element={<TermConditionPage />} />
