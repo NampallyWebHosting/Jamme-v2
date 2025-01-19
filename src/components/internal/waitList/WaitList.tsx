@@ -1,141 +1,171 @@
-import  { useState } from "react";
+import { useState } from "react"
+import { useForm } from "react-hook-form"
+import { z } from "zod"
+import { useNavigate } from "react-router-dom"
 import {
   AlertDialog,
   AlertDialogContent,
   AlertDialogDescription,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { useForm, Controller } from "react-hook-form";
-import { z } from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
+  AlertDialogAction,
+  AlertDialogCancel,
+} from "@/components/ui/alert-dialog"
 
-// Define the schema for validation using Zod
-const schema = z.object({
-  name: z.string().min(3, "Name must be at least 3 characters long"),
-  phonenumber: z
-    .string()
-    .regex(/^\+?\d{10,15}$/, "Phone number must be a valid format"), // E.g., +1234567890
-});
+const nameSchema = z.object({ name: z.string().min(1, "Name is required") })
+const collegeSchema = z.object({ college: z.string().min(1, "College is required") })
+const emailSchema = z.object({ email: z.string().email("Invalid email address").min(1, "Email is required") })
+const phoneSchema = z.object({
+  phoneNumber: z.string()
+    .min(10, "Phone number must be at least 10 digits")
+    .max(15, "Phone number cannot exceed 15 digits")
+    .regex(/^\d+$/, "Phone number must contain only numbers"),
+})
 
-// Type for the form data
-type FormData = z.infer<typeof schema>;
+type FormData = { name?: string; college?: string; email?: string; phoneNumber?: string }
 
-export function AlertDialogDemo() {
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [apiError, setApiError] = useState<string | null>(null);
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormData>({
-    resolver: zodResolver(schema),
-  });
+export function MultiStepForm() {
+  const [step, setStep] = useState(0)
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  const [errorMessage, setErrorMessage] = useState<string | null>(null)
+  const navigate = useNavigate()
 
-  // Submit function to call the API
+  const { register, handleSubmit, watch, formState: { errors }, reset, trigger } = useForm<FormData>({
+    resolver: async (data) => {
+      let schema
+      switch (step) {
+        case 0: schema = nameSchema; break
+        case 1: schema = collegeSchema; break
+        case 2: schema = emailSchema; break
+        case 3: schema = phoneSchema; break
+        default: schema = z.object({})
+      }
+      try {
+        schema.parse(data)
+        return { values: data, errors: {} }
+      } catch (e) {
+        if (e instanceof z.ZodError) {
+          const fieldErrors = e.errors.reduce((acc, error) => {
+            acc[error.path[0]] = { message: error.message }
+            return acc
+          }, {} as any)
+          return { values: {}, errors: fieldErrors }
+        }
+        return { values: data, errors: {} }
+      }
+    },
+  })
+
   const onSubmit = async (data: FormData) => {
-    setIsSubmitting(true); // Show loading indicator
-    setApiError(null); // Clear any previous error
+    setIsSubmitting(true)
+    setErrorMessage(null)
 
     try {
-      const response = await fetch(
-        "https://jammeads.jamme.app/api/v1/jamme-waitlist/add-waitlist",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(data),
-        }
-      );
+      const response = await fetch("https://jammeads.jamme.app/api/v1/jamme-waitlist/add-waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      })
 
-      const result = await response.json();
-
-      if (response.ok) {
-        console.log("Success:", result); // Handle success (you can update the UI accordingly)
-      } else {
-        throw new Error(result.message || "Something went wrong");
+      if (!response.ok) {
+        const errorData = await response.json()
+        throw new Error(errorData.error || "Failed to submit form")
       }
+
+      reset()
+      setStep(0)
+      navigate("/confirmation")
     } catch (error: any) {
-      setApiError(error.message); // Set error if the request fails
+      setErrorMessage(error.message)
     } finally {
-      setIsSubmitting(false); // Hide loading indicator
+      setIsSubmitting(false)
     }
-  };
+  }
+
+  const nextStep = async () => {
+    const isValid = await trigger()
+    if (isValid) setStep((prev) => prev + 1)
+  }
+
+  const prevStep = () => setStep((prev) => prev - 1)
+
+  // Watch the current field value based on the step
+  const currentFieldValue = (() => {
+    if (step === 0) return watch("name");
+    if (step === 1) return watch("college");
+    if (step === 2) return watch("email");
+    if (step === 3) return watch("phoneNumber");
+    return undefined;
+  })();
+  
+
+  const isNextDisabled = !currentFieldValue || !!errors[step === 0 ? "name" : step === 1 ? "college" : step === 2 ? "email" : "phoneNumber"]
 
   return (
-   <div>
-    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In libero soluta alias necessitatibus voluptate sed harum? Eaque autem quam eos tenetur qui, et enim labore hic repudiandae voluptates corporis est pariatur! Cumque illo ut, quasi itaque recusandae id debitis eaque fugiat at, molestiae ad dolores culpa officiis sunt aperiam impedit adipisci voluptatum ratione, molestias incidunt sapiente. Libero id aspernatur quaerat praesentium ad? Nostrum odit reprehenderit necessitatibus voluptatem, deserunt natus, saepe doloremque quo ratione accusantium nihil neque asperiores dolor delectus, cumque quis doloribus amet alias molestias hic! Assumenda tempora fugiat qui quo, vitae excepturi a iste nam cum consequatur magnam necessitatibus saepe tenetur fugit odio molestiae! Sint, modi! Ex perferendis natus dolores culpa itaque exercitationem explicabo? Qui nostrum atque id debitis pariatur ratione saepe, consectetur et aspernatur ad nihil porro nulla, aliquid quisquam alias aut consequuntur nam veniam doloribus ab fugit in est? Alias blanditiis, veniam maiores pariatur nobis eos, magnam cumque quae dolores tempore accusantium mollitia aliquam repellendus reprehenderit inventore quisquam tenetur consequatur voluptatum commodi quasi consequuntur ut. Provident praesentium laudantium distinctio. Voluptates praesentium molestiae aliquam quos fuga repudiandae suscipit obcaecati quis animi aspernatur iste blanditiis saepe porro voluptatem, autem ex cupiditate illo neque! Placeat iure numquam aut quo dolor libero error aspernatur officia sint, dignissimos cum officiis dolorem natus minus possimus exercitationem. Ea amet itaque debitis quam dolor repellat, quod consectetur ut enim voluptatem tempore quaerat eius, nulla at. Quod totam ipsum atque animi at fuga dicta inventore deleniti distinctio delectus tenetur hic officiis ea fugit autem provident dolorem odio incidunt error, cumque mollitia temporibus explicabo necessitatibus excepturi. Quam magnam dolore mollitia illum praesentium qui, debitis facere, veritatis asperiores natus neque! Minima distinctio magnam nihil ea! Porro aliquid omnis dolores ad sint minima id totam atque aut fugiat placeat consequatur quas quia eius sequi, deserunt et dolorum sapiente ullam.</p>
-     <AlertDialog open={true}>
+    <AlertDialog open={true}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <AlertDialogTitle>Form with React Hook Form & Zod</AlertDialogTitle>
+          <AlertDialogTitle>Add Waitlist</AlertDialogTitle>
           <AlertDialogDescription>
-            Please fill out the form below.
+            Please fill in the details to add to the waitlist.
           </AlertDialogDescription>
         </AlertDialogHeader>
-
+        
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          {/* Name Field */}
-          <div>
-            <label htmlFor="name" className="block text-sm font-medium">
-              Name
-            </label>
-            <Controller
-              control={control}
-              name="name"
-              render={({ field }) => (
-                <input
-                  {...field}
-                  id="name"
-                  type="text"
-                  className="mt-1 p-2 border rounded"
-                />
-              )}
-            />
-            {errors.name && (
-              <p className="text-red-500 text-sm">{errors.name.message}</p>
-            )}
-          </div>
-
-          {/* Phone Number Field */}
-          <div>
-            <label htmlFor="phonenumber" className="block text-sm font-medium">
-              Phone Number
-            </label>
-            <Controller
-              control={control}
-              name="phonenumber"
-              render={({ field }) => (
-                <input
-                  {...field}
-                  id="phonenumber"
-                  type="text"
-                  className="mt-1 p-2 border rounded"
-                />
-              )}
-            />
-            {errors.phonenumber && (
-              <p className="text-red-500 text-sm">{errors.phonenumber.message}</p>
-            )}
-          </div>
-
-          {apiError && (
-            <p className="text-red-500 text-sm mt-2">{apiError}</p>
+          {step === 0 && (
+            <div>
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700">Name</label>
+              <input id="name" type="text" {...register("name")} className="block w-full mt-1 border rounded-md" />
+              {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+            </div>
           )}
 
-          <button
-            type="submit"
-            disabled={isSubmitting}
-            className="mt-4 bg-blue-500 text-white p-2 rounded disabled:opacity-50"
-          >
-            {isSubmitting ? "Submitting..." : "Submit"}
-          </button>
+          {step === 1 && (
+            <div>
+              <label htmlFor="college" className="block text-sm font-medium text-gray-700">College</label>
+              <input id="college" type="text" {...register("college")} className="block w-full mt-1 border rounded-md" />
+              {errors.college && <span className="text-red-500">{errors.college.message}</span>}
+            </div>
+          )}
+
+          {step === 2 && (
+            <div>
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email</label>
+              <input id="email" type="email" {...register("email")} className="block w-full mt-1 border rounded-md" />
+              {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+            </div>
+          )}
+
+          {step === 3 && (
+            <div>
+              <label htmlFor="phoneNumber" className="block text-sm font-medium text-gray-700">Phone Number</label>
+              <input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1 border rounded-md" />
+              {errors.phoneNumber && <span className="text-red-500">{errors.phoneNumber.message}</span>}
+            </div>
+          )}
+
+          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+
+          <div className="flex justify-between mt-6">
+            <AlertDialogCancel onClick={prevStep} disabled={step === 0}>Back</AlertDialogCancel>
+            {step < 3 ? (
+              <AlertDialogAction
+                type="button"
+                onClick={nextStep}
+                disabled={isNextDisabled} // Disable if the field is empty or invalid
+              >
+                Next
+              </AlertDialogAction>
+            ) : (
+              <AlertDialogAction type="submit" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit"}
+              </AlertDialogAction>
+            )}
+          </div>
         </form>
       </AlertDialogContent>
     </AlertDialog>
-   </div>
-  );
+  )
 }
 
-export default AlertDialogDemo;
+export default MultiStepForm

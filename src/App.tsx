@@ -4,7 +4,8 @@ const App = () => {
   return (
     <>
       <RoutesIndex />
-      <Toaster /></>
+      <Toaster />
+    </>
   );
 };
 

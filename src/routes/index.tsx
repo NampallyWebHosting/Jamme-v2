@@ -1,4 +1,5 @@
-import ContactusPage from '@/pages/Contact-usPage';
+import ConfirmationPage from '@/pages/ConfirmationPage';
+import ContactusPage from '@/pages/ContactusPage';
 import BlogApp from '@/pages/Csae';
 import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
@@ -24,6 +25,7 @@ const RoutesIndex = () => {
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/eula" element={<EulaPage />} />
         <Route path="/waitlist" element={<WaitListPage />} />
+        <Route path="/confirmation" element={<ConfirmationPage />} />
       </Routes>
     </Router>
   );
