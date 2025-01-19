@@ -7,6 +7,7 @@ import JammeBlogs from '@/pages/JammeBlogs';
 import PrivacyPage from '@/pages/privacy';
 import SurveyForm from '@/pages/SurveyForm';
 import TermConditionPage from '@/pages/TermCondition';
+import WaitListPage from '@/pages/WaitListPage';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 const RoutesIndex = () => {
@@ -22,6 +23,7 @@ const RoutesIndex = () => {
         <Route path="/terms-and-conditions" element={<TermConditionPage />} />
         <Route path="/faq" element={<FaqPage />} />
         <Route path="/eula" element={<EulaPage />} />
+        <Route path="/waitlist" element={<WaitListPage />} />
       </Routes>
     </Router>
   );
