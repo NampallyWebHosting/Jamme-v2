@@ -100,7 +100,7 @@ const Footer = () => {
                     </a>
                 </div>
                 <p className="text-center text-black text-sm">
-                    &copy; 2024{' '}
+                    &copy; 2025{' '}
                     <a
                         href="https://voiaxis.com"
                         target="_blank"
