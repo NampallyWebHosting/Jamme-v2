@@ -64,7 +64,9 @@ export function AlertDialogDemo() {
   };
 
   return (
-    <AlertDialog open={true}>
+   <div>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. In libero soluta alias necessitatibus voluptate sed harum? Eaque autem quam eos tenetur qui, et enim labore hic repudiandae voluptates corporis est pariatur! Cumque illo ut, quasi itaque recusandae id debitis eaque fugiat at, molestiae ad dolores culpa officiis sunt aperiam impedit adipisci voluptatum ratione, molestias incidunt sapiente. Libero id aspernatur quaerat praesentium ad? Nostrum odit reprehenderit necessitatibus voluptatem, deserunt natus, saepe doloremque quo ratione accusantium nihil neque asperiores dolor delectus, cumque quis doloribus amet alias molestias hic! Assumenda tempora fugiat qui quo, vitae excepturi a iste nam cum consequatur magnam necessitatibus saepe tenetur fugit odio molestiae! Sint, modi! Ex perferendis natus dolores culpa itaque exercitationem explicabo? Qui nostrum atque id debitis pariatur ratione saepe, consectetur et aspernatur ad nihil porro nulla, aliquid quisquam alias aut consequuntur nam veniam doloribus ab fugit in est? Alias blanditiis, veniam maiores pariatur nobis eos, magnam cumque quae dolores tempore accusantium mollitia aliquam repellendus reprehenderit inventore quisquam tenetur consequatur voluptatum commodi quasi consequuntur ut. Provident praesentium laudantium distinctio. Voluptates praesentium molestiae aliquam quos fuga repudiandae suscipit obcaecati quis animi aspernatur iste blanditiis saepe porro voluptatem, autem ex cupiditate illo neque! Placeat iure numquam aut quo dolor libero error aspernatur officia sint, dignissimos cum officiis dolorem natus minus possimus exercitationem. Ea amet itaque debitis quam dolor repellat, quod consectetur ut enim voluptatem tempore quaerat eius, nulla at. Quod totam ipsum atque animi at fuga dicta inventore deleniti distinctio delectus tenetur hic officiis ea fugit autem provident dolorem odio incidunt error, cumque mollitia temporibus explicabo necessitatibus excepturi. Quam magnam dolore mollitia illum praesentium qui, debitis facere, veritatis asperiores natus neque! Minima distinctio magnam nihil ea! Porro aliquid omnis dolores ad sint minima id totam atque aut fugiat placeat consequatur quas quia eius sequi, deserunt et dolorum sapiente ullam.</p>
+     <AlertDialog open={true}>
       <AlertDialogContent>
         <AlertDialogHeader>
           <AlertDialogTitle>Form with React Hook Form & Zod</AlertDialogTitle>
@@ -132,6 +134,7 @@ export function AlertDialogDemo() {
         </form>
       </AlertDialogContent>
     </AlertDialog>
+   </div>
   );
 }
 
