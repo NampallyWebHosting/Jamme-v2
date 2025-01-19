@@ -1,4 +1,4 @@
-import Contact from '@/components/internal/contact-us/contact-us';
+import Contact from '@/components/internal/contact-us/Contact-us';
 import BlogApp from '@/pages/Csae';
 import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
