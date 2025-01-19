@@ -24,6 +24,7 @@ const MainContent: React.FC = () => {
         return () => clearInterval(interval); // Cleanup on unmount
     }, []);
 
+
     return (
         <>
             {/* first div */}
@@ -65,9 +66,9 @@ const MainContent: React.FC = () => {
                     <div className="hidden lg:flex items-center justify-center lg:-mt-8 ">
                         <ArrowDown size={70} className="animate-bounce" />
                     </div>
-                    <div className="lg:hidden flex items-center justify-center ">
+                    {/* <div className="lg:hidden flex items-center justify-center ">
                         <ArrowDown size={50} className="animate-bounce" />
-                    </div>
+                    </div> */}
 
                 </div>
             </div>
