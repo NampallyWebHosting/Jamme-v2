@@ -1,10 +1,10 @@
 import ConfirmationPage from '@/pages/ConfirmationPage';
-// import ContactusPage from '@/pages/ContactusPage';
 import BlogApp from '@/pages/Csae';
 import EulaPage from '@/pages/Eula';
 import FaqPage from '@/pages/Faq';
 import HomePage from '@/pages/HomePage';
 import JammeBlogs from '@/pages/JammeBlogs';
+import JStudio from '@/pages/jStudio';
 import PrivacyPage from '@/pages/privacy';
 import SurveyForm from '@/pages/SurveyForm';
 import TermConditionPage from '@/pages/TermCondition';
@@ -18,7 +18,7 @@ const RoutesIndex = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/surveyform" element={<SurveyForm />} />
         <Route path="/blogs" element={<JammeBlogs />} />
-        {/* <Route path="/contact-us" element={<ContactusPage />} /> */}
+        <Route path="/contact-us" element={<JStudio />} />
         <Route path="/csae" element={<BlogApp />} />
         <Route path="/privacy" element={<PrivacyPage />} />
         <Route path="/terms-and-conditions" element={<TermConditionPage />} />
