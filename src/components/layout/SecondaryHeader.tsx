@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import Logo from "@/assets/Logo.png"
 const SecondaryHeader = () => {
   return (
-    <header className="w-full h-24  overflow-hidden">
+    <header className="w-full h-24  overflow-hidden font-Chillax">
       <nav className="w-full h-full flex justify-between items-center ml-6 mt-4">
         <Link
           to="/"

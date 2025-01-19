@@ -38,7 +38,7 @@ const Appdownload = () => {
         <div className='fixed inset-0 flex items-center justify-center p-8 rounded-lg shadow-md z-10 font-Chillax'>
             <div className=" flex flex-col justify-center items-center">
                 {/* Typewriter effect for the string */}
-                <div className="text-[7.2vmin] block h-[90px] text-black lowercase text-center font-normal list-none">
+                <div className="text-3xl tracking-wider block h-[50px] text-black lowercase text-center font-semibold list-none">
                     <ReactTyped
                         strings={strings}
                         typeSpeed={70}
