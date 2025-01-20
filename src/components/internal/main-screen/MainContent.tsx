@@ -30,15 +30,15 @@ const MainContent: React.FC = () => {
             {/* first div */}
             <div className="fixed inset-0 flex items-center justify-center p-8 rounded-lg shadow-md z-10 font-Chillax">
                 <div className="flex flex-col pt-10 md:pt-2">
-                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-[150px] items-center justify-between p-10">
+                    <div className="flex flex-col lg:flex-row gap-10 lg:gap-[150px] items-center justify-between p-10">
                         <div
-                            className={`text-black text-3xl font-semibold tracking-wider w-24 text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black md:md:text-3xl font-semibold tracking-wider w-24 text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {firstBoxWords[firstBoxIndex]}
                         </div>
                         <div
-                            className={`text-black text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black md:md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {secondBoxWords[secondBoxIndex]}
@@ -50,13 +50,13 @@ const MainContent: React.FC = () => {
 
                         </div>
                         <div
-                            className={`text-black text-3xl font-semibold w-24 tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black md:md:text-3xl font-semibold w-24 tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {thirdBoxWords[thirdBoxIndex]}
                         </div>
                         <div
-                            className={`text-black text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {fourthBoxWords[fourthBoxIndex]}
