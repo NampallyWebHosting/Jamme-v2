@@ -32,7 +32,7 @@ const ScrollColorChanger: React.FC = () => {
   }, []);
 
   return (
-    <div className="relative min-h-screen w-full">
+    <div className="relative  w-full">
       {/* Background */}
       {/* <div
         style={{

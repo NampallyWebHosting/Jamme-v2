@@ -13,7 +13,7 @@ const Footer = () => {
 
     return (
         <>
-            <footer className="w-full h-[92px] flex flex-col lg:flex-row justify-between items-center lg:p-10  gap-4 font-Chillax relative z-20">
+            <footer className="w-full h-[92px] flex flex-col lg:flex-row justify-between items-center lg:p-10 mb-10 lg:mb-4  gap-4 font-Chillax relative z-20">
                 <div className="flex justify-center items-center gap-4 lg:gap-5 flex-wrap">
                     <Link
                         to="/privacy"

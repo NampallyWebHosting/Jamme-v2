@@ -28,48 +28,46 @@ const MainContent: React.FC = () => {
     return (
         <>
             {/* first div */}
-            <div className="fixed inset-0 flex items-center justify-center p-8 rounded-lg shadow-md z-10 font-Chillax">
-                <div className="flex flex-col pt-10 md:pt-2">
-                    <div className="flex flex-col lg:flex-row gap-10 lg:gap-[150px] items-center justify-between p-10">
+            <div className="fixed inset-0 flex items-center justify-center lg:p-8 rounded-lg shadow-md z-10 font-Chillax">
+                <div className="flex flex-col md:pt-2">
+                    <div className="flex flex-col lg:flex-row gap-16 lg:gap-[150px] items-center justify-between md:p-10">
                         <div
-                            className={`text-black md:md:text-3xl font-semibold tracking-wider w-24 text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black text-xl md:md:text-3xl font-semibold tracking-wider w-24 text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {firstBoxWords[firstBoxIndex]}
                         </div>
                         <div
-                            className={`text-black md:md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black text-xl md:md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {secondBoxWords[secondBoxIndex]}
                         </div>
                         <div className="flex flex-col items-center justify-center">
-                            <h1 className="text-[10vmin] text-black font-medium tracking-wider leading-normal text-center animate-heroHeadingScale">
+                            <h1 className=" text-3xl lg:text-[9vmin] text-black font-medium tracking-wider leading-normal text-center animate-heroHeadingScale">
                                 JAMME
                             </h1>
-
                         </div>
                         <div
-                            className={`text-black md:md:text-3xl font-semibold w-24 tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black text-xl md:md:text-3xl font-semibold w-24 tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {thirdBoxWords[thirdBoxIndex]}
                         </div>
                         <div
-                            className={`text-black md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
+                            className={`text-black text-xl md:text-3xl font-semibold w-24  tracking-wider text-center ${isLeftFlip ? "word-flip-left" : "word-flip-right"
                                 }`}
                         >
                             {fourthBoxWords[fourthBoxIndex]}
                         </div>
 
                     </div>
-                    <div className="hidden lg:flex items-center justify-center lg:-mt-8 ">
+                    <div className="hidden lg:flex items-center justify-center ">
                         <ArrowDown size={70} className="animate-bounce" />
                     </div>
                     {/* <div className="lg:hidden flex items-center justify-center ">
                         <ArrowDown size={50} className="animate-bounce" />
                     </div> */}
-
                 </div>
             </div>
         </>
