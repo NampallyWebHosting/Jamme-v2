@@ -33,14 +33,6 @@ const ScrollColorChanger: React.FC = () => {
 
   return (
     <div className="relative  w-full">
-      {/* Background */}
-      {/* <div
-        style={{
-          background: `linear-gradient(to left, #25A6E8 ${scrollPercent}%, #FFC26F 0%)`,
-          transition: "background 0.2s ease",
-        }}
-        className="fixed inset-0 w-full h-full z-0"
-      ></div> */}
       <div
         style={{
           background: `linear-gradient(30deg, #25A6E8 ${scrollPercent}%, #FFC26F 0%)`,
