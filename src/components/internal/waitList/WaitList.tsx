@@ -8,6 +8,7 @@ import {
   AlertDialogTitle,
   AlertDialogAction,
   AlertDialogCancel,
+  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
 import { Input } from "@/components/ui/input";
@@ -109,12 +110,13 @@ export function MultiStepForm() {
 
   return (
     <AlertDialog open={true}>
-      <AlertDialogContent className=" w-[310px] md:w-full md:max-w-2xl  bg-[#FFF7EF] font-Chillax md:rounded-[16px] rounded-md">
+      <AlertDialogContent className=" w-[310px] md:w-full md:max-w-2xl lg:max-w-3xl   bg-[#FFF7EF] font-Chillax md:rounded-[16px] rounded-md">
         <AlertDialogHeader>
           <div className="flex items-center justify-center ">
             <img src={WaitListLogo} alt="" className="w-[134px] h-[181.16px] -mt-[110px]" />
           </div>
           <AlertDialogTitle className="text-center font-semibold text-2xl">Welcome to Jamme</AlertDialogTitle>
+          <AlertDialogDescription className="text-center font-medium text-base text-black">Sign up now! This exclusive social app is invite-only</AlertDialogDescription>
         </AlertDialogHeader>
         <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           {step === 0 && (
