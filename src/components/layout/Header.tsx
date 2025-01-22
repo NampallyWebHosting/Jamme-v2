@@ -113,6 +113,12 @@ const Header: React.FC = () => {
           >
             J Blogs
           </Link>
+          <Link
+            to="/waitlist"
+            className="text-xs sm:text-sm lg:text-lg font-medium text-black transition-colors hover:text-orange-500"
+          >
+            J Queue
+          </Link>
         </div>
       </nav>
 
