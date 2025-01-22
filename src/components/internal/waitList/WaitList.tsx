@@ -15,6 +15,7 @@ import { Label } from "@/components/ui/label";
 import WaitListLogo from "@/assets/waitListLogo.svg"
 import { ChevronDown } from "lucide-react";
 import IndiaFlag from "@/assets/twemoji_flag-india.svg"
+import Mixpanel from "../mixpanel/mixpanel";
 // Your validation schemas
 const nameSchema = z.object({ name: z.string().min(1, "Name is required") });
 const collegeSchema = z.object({ college: z.string().min(1, "College is required") });
@@ -65,9 +66,8 @@ export function MultiStepForm() {
     },
   });
 
-  const { onSubmit, isSubmitting, errorMessage } = useSubmitForm(); // Using the custom hook
+  const { onSubmit, isSubmitting, errorMessage } = useSubmitForm();
 
-  // Watch the current field value based on the step
   const currentFieldValue = (() => {
     switch (step) {
       case 0:
@@ -79,19 +79,33 @@ export function MultiStepForm() {
       case 3:
         return watch("phoneNumber");
       default:
-        return ""; // Return an empty string if `step` doesn't match
+        return "";
     }
   })();
-
 
   const isNextDisabled = !currentFieldValue || !!errors[step === 0 ? "name" : step === 1 ? "college" : step === 2 ? "email" : "phoneNumber"];
 
   const nextStep = async () => {
     const isValid = await trigger();
-    if (isValid) setStep((prev) => prev + 1);
+    if (isValid) {
+      setStep((prev) => {
+        const newStep = prev + 1;
+        if (newStep === 3) {
+          // Track when the user reaches the last step
+          Mixpanel.track("Reached Last Step", { step: newStep });
+        }
+        return newStep;
+      });
+    }
   };
 
   const prevStep = () => setStep((prev) => prev - 1);
+
+  const handleFormSubmit = (data: FormData) => {
+    // Track form submission
+    Mixpanel.track("Form Submitted", { formData: data });
+    onSubmit(data, reset, setStep);
+  };
 
   return (
     <AlertDialog open={true}>
@@ -102,11 +116,11 @@ export function MultiStepForm() {
           </div>
           <AlertDialogTitle className="text-center font-semibold text-2xl">Welcome to Jamme</AlertDialogTitle>
         </AlertDialogHeader>
-        <form onSubmit={handleSubmit((data) => onSubmit(data, reset, setStep))} className="space-y-4">
+        <form onSubmit={handleSubmit(handleFormSubmit)} className="space-y-4">
           {step === 0 && (
             <div>
               <Label htmlFor="name" className="block font-medium text-base">Your name</Label>
-              <Input id="name" type="text" {...register("name")} className="block w-full mt-1 text-[#946437] font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="name" type="text" {...register("name")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {errors.name && <span className="text-red-500">{errors.name.message}</span>}
             </div>
           )}
@@ -114,7 +128,7 @@ export function MultiStepForm() {
           {step === 1 && (
             <div>
               <Label htmlFor="college" className="block font-medium text-base">College/University name</Label>
-              <Input id="college" type="text" {...register("college")} className="block w-full mt-1 text-[#946437] font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="college" type="text" {...register("college")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {errors.college && <span className="text-red-500">{errors.college.message}</span>}
             </div>
           )}
@@ -122,7 +136,7 @@ export function MultiStepForm() {
           {step === 2 && (
             <div>
               <Label htmlFor="email" className="block font-medium text-base">Your email</Label>
-              <Input id="email" type="email" {...register("email")} className="block w-full mt-1 text-[#946437] font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="email" type="email" {...register("email")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {errors.email && <span className="text-red-500">{errors.email.message}</span>}
             </div>
           )}
@@ -135,7 +149,7 @@ export function MultiStepForm() {
                   <img src={IndiaFlag} alt="India" className="w-5 h-5" />
                   <ChevronDown />
                 </div>
-                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1 text-[#946437] font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
+                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
               </div>
               {errors.phoneNumber && <span className="text-red-500 text-xs">{errors.phoneNumber.message}</span>}
             </div>
@@ -148,7 +162,7 @@ export function MultiStepForm() {
               <AlertDialogAction
                 type="button"
                 onClick={nextStep}
-                disabled={isNextDisabled} // Disable if the field is empty or invalid
+                disabled={isNextDisabled}
                 className="bg-[#FFAE63] hover:bg-orange-300 rounded-full text-black font-semibold text-sm p-6 md:p-5 md:w-32 w-full"
               >
                 Next
@@ -158,7 +172,11 @@ export function MultiStepForm() {
                 {isSubmitting ? "Submitting..." : "Submit"}
               </AlertDialogAction>
             )}
-            <AlertDialogCancel onClick={prevStep} disabled={step === 0} className="border-none shadow-none bg-[#FFF7EF] hover:bg-[#FFF7EF] text-[#9B3B36]  text-sm font-semibold">Previous</AlertDialogCancel>
+            {step > 0 && (
+              <AlertDialogCancel onClick={prevStep} className="border-none shadow-none bg-[#FFF7EF] hover:bg-[#FFF7EF] text-[#9B3B36] text-sm font-semibold">
+                Previous
+              </AlertDialogCancel>
+            )}
           </div>
         </form>
       </AlertDialogContent>
