@@ -53,7 +53,7 @@ const Header: React.FC = () => {
         </div>
 
         {/* Menu Section */}
-        <div className="flex flex-wrap items-center gap-4 sm:gap-6 lg:gap-8">
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-6 lg:gap-8">
           <Link
             to="/"
             className=" flex sm:hidden justify-center items-center gap-0 cursor-pointer animate-pulse"
@@ -77,7 +77,7 @@ const Header: React.FC = () => {
             <img
               src={musicMode === "play" ? dash : beats}
               alt="Beats"
-              className="w-4 sm:w-8 lg:w-8 aspect-square"
+              className="w-2 sm:w-8 lg:w-8 aspect-square"
             />
           </button>
 
