@@ -152,7 +152,7 @@ export function MultiStepForm() {
           {step === 0 && (
             <div>
               <Label htmlFor="name" className="block font-medium text-base">Your name</Label>
-              <Input id="name" type="text" {...register("name")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="name" type="text" {...register("name")} className="block w-full mt-1 text-xs md:text-base font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {/* Only show error if the field is touched */}
               {touchedFields.name && errors.name && <span className="text-red-500 text-xs ml-2 font-medium">{errors.name.message}</span>}
             </div>
@@ -161,7 +161,7 @@ export function MultiStepForm() {
           {step === 1 && (
             <div>
               <Label htmlFor="college" className="block font-medium text-base">College/University name</Label>
-              <Input id="college" type="text" {...register("college")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="college" type="text" {...register("college")} className="block w-full mt-1 text-xs md:text-base font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {touchedFields.college && errors.college && <span className="text-red-500 text-xs ml-2 font-medium">{errors.college.message}</span>}
             </div>
           )}
@@ -169,7 +169,7 @@ export function MultiStepForm() {
           {step === 2 && (
             <div>
               <Label htmlFor="email" className="block font-medium text-base">Your email</Label>
-              <Input id="email" type="email" {...register("email")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              <Input id="email" type="email" {...register("email")} className="block w-full mt-1 text-xs md:text-base font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
               {touchedFields.email && errors.email && <span className="text-red-500 text-xs ml-2 font-medium">{errors.email.message}</span>}
             </div>
           )}
@@ -182,7 +182,7 @@ export function MultiStepForm() {
                   <img src={IndiaFlag} alt="India" className="w-5 h-5" />
                   <ChevronDown />
                 </div>
-                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
+                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1 text-xs md:text-base font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
               </div>
               {touchedFields.phoneNumber && errors.phoneNumber && <span className="text-red-500 text-xs ml-2 font-medium">{errors.phoneNumber.message}</span>}
             </div>
