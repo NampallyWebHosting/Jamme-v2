@@ -3,7 +3,7 @@ import mixpanel from "mixpanel-browser";
 const MIXPANEL_TOKEN = "c3848172c3ecb5b14bc68cd729c93a11";
 
 // Initialize Mixpanel
-mixpanel.init(MIXPANEL_TOKEN, { debug: true });
+mixpanel.init(MIXPANEL_TOKEN, { debug: false });
 
 /**
  * Interface for tracking properties.

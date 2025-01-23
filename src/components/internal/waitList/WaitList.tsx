@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import {
@@ -6,33 +6,58 @@ import {
   AlertDialogContent,
   AlertDialogHeader,
   AlertDialogTitle,
+  AlertDialogDescription,
   AlertDialogAction,
   AlertDialogCancel,
-  AlertDialogDescription,
 } from "@/components/ui/alert-dialog";
 import { useSubmitForm } from "@/hooks/useSubmitForm";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import WaitListLogo from "@/assets/waitListLogo.svg"
+import WaitListLogo from "@/assets/waitListLogo.svg";
+import Mixpanel from "../mixpanel/mixpanel";
 import { ChevronDown } from "lucide-react";
 import IndiaFlag from "@/assets/twemoji_flag-india.svg"
-import Mixpanel from "../mixpanel/mixpanel";
 // Your validation schemas
-const nameSchema = z.object({ name: z.string().min(1, "Name is required") });
-const collegeSchema = z.object({ college: z.string().min(1, "College is required") });
-const emailSchema = z.object({ email: z.string().email("Invalid email address").min(1, "Email is required") });
-const phoneSchema = z.object({
-  phoneNumber: z.string()
-    .length(10, "Phone number must be exactly 10 digits") // Ensure exactly 10 digits
-    .regex(/^\d+$/, "Phone number must contain only numbers"), // Only digits
+const nameSchema = z.object({
+  name: z
+    .string()
+    .trim() // Remove leading and trailing spaces
+    .min(1, "Name is required") // Ensure it's not empty after trimming
+    .max(25, "Name cannot exceed 25 characters") // Maximum length of 25 characters
+    .regex(/^[A-Za-z\s]+$/, "Name can only contain alphabets and spaces"), // Only alphabets and spaces
 });
 
+const collegeSchema = z.object({
+  college: z
+    .string()
+    .trim()
+    .min(1, "College is required")
+    .regex(/^[A-Za-z\s]+$/, "College name can only contain alphabets"),
+});
+
+const emailSchema = z.object({
+  email: z
+    .string()
+    .trim()
+    .email("Invalid email address")
+    .min(1, "Email is required")
+    .regex(/\S/, "Email cannot be just spaces"),
+});
+
+const phoneSchema = z.object({
+  phoneNumber: z
+    .string()
+    .trim()
+    .length(10, "Phone number must be exactly 10 digits")
+    .regex(/^\d+$/, "Phone number must contain only numbers")
+    .regex(/\S/, "Phone number cannot be just spaces"),
+});
 
 type FormData = { name?: string; college?: string; email?: string; phoneNumber?: string };
 
 export function MultiStepForm() {
   const [step, setStep] = useState(0);
-  const { register, handleSubmit, watch, formState: { errors }, reset, trigger } = useForm<FormData>({
+  const { register, handleSubmit, watch, formState: { errors, touchedFields }, reset, trigger } = useForm<FormData>({
     resolver: async (data) => {
       let schema;
       switch (step) {
@@ -84,6 +109,11 @@ export function MultiStepForm() {
     }
   })();
 
+  // Trigger validation whenever the input changes
+  useEffect(() => {
+    trigger(); // Trigger validation for the current step
+  }, [currentFieldValue, trigger]); // Re-trigger on field value change
+
   const isNextDisabled = !currentFieldValue || !!errors[step === 0 ? "name" : step === 1 ? "college" : step === 2 ? "email" : "phoneNumber"];
 
   const nextStep = async () => {
@@ -110,7 +140,7 @@ export function MultiStepForm() {
 
   return (
     <AlertDialog open={true}>
-      <AlertDialogContent className=" w-[310px] md:w-full md:max-w-2xl lg:max-w-3xl   bg-[#FFF7EF] font-Chillax md:rounded-[16px] rounded-md">
+      <AlertDialogContent className="w-[310px] md:w-full md:max-w-2xl lg:max-w-3xl border-t-0 bg-[#FFF7EF] font-Chillax md:rounded-[16px] rounded-md">
         <AlertDialogHeader>
           <div className="flex items-center justify-center ">
             <img src={WaitListLogo} alt="" className="w-[134px] h-[181.16px] -mt-[110px]" />
@@ -122,24 +152,25 @@ export function MultiStepForm() {
           {step === 0 && (
             <div>
               <Label htmlFor="name" className="block font-medium text-base">Your name</Label>
-              <Input id="name" type="text" {...register("name")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
-              {errors.name && <span className="text-red-500">{errors.name.message}</span>}
+              <Input id="name" type="text" {...register("name")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              {/* Only show error if the field is touched */}
+              {touchedFields.name && errors.name && <span className="text-red-500 text-xs ml-2 font-medium">{errors.name.message}</span>}
             </div>
           )}
 
           {step === 1 && (
             <div>
               <Label htmlFor="college" className="block font-medium text-base">College/University name</Label>
-              <Input id="college" type="text" {...register("college")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
-              {errors.college && <span className="text-red-500">{errors.college.message}</span>}
+              <Input id="college" type="text" {...register("college")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              {touchedFields.college && errors.college && <span className="text-red-500 text-xs ml-2 font-medium">{errors.college.message}</span>}
             </div>
           )}
 
           {step === 2 && (
             <div>
               <Label htmlFor="email" className="block font-medium text-base">Your email</Label>
-              <Input id="email" type="email" {...register("email")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
-              {errors.email && <span className="text-red-500">{errors.email.message}</span>}
+              <Input id="email" type="email" {...register("email")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-xl" />
+              {touchedFields.email && errors.email && <span className="text-red-500 text-xs ml-2 font-medium">{errors.email.message}</span>}
             </div>
           )}
 
@@ -151,15 +182,15 @@ export function MultiStepForm() {
                   <img src={IndiaFlag} alt="India" className="w-5 h-5" />
                   <ChevronDown />
                 </div>
-                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1  font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
+                <Input id="phoneNumber" type="text" {...register("phoneNumber")} className="block w-full mt-1 font-bold border-[#AD9780] bg-[#FFEFE0] rounded-md" />
               </div>
-              {errors.phoneNumber && <span className="text-red-500 text-xs">{errors.phoneNumber.message}</span>}
+              {touchedFields.phoneNumber && errors.phoneNumber && <span className="text-red-500 text-xs ml-2 font-medium">{errors.phoneNumber.message}</span>}
             </div>
           )}
 
-          {errorMessage && <div className="text-red-500">{errorMessage}</div>}
+          {errorMessage && <div className="text-red-500 text-xs ml-2 font-medium">{errorMessage}</div>}
 
-          <div className="flex flex-col items-center  md:flex-row-reverse md:items-center">
+          <div className="flex flex-col items-center md:flex-row-reverse md:items-center">
             {step < 3 ? (
               <AlertDialogAction
                 type="button"
