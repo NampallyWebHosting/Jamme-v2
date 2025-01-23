@@ -1,11 +1,13 @@
 import { useState } from 'react';
 import { Dialog, DialogTrigger, DialogContent, DialogTitle } from '@/components/ui/dialog';
-import SoonImage from '@/assets/Soon.png';        // Import the Soon.png image
-import GooglePlayImage from '@/assets/GooglePlay.png';  // Import the GooglePlay.png image
-import AppStoreImage from '@/assets/AppStore.png';  // Import the AppStore.png image
-import BeatsGif from '@/assets/Beats.gif';          // Import Beats.gif from assets
-import { ReactTyped } from 'react-typed'; // Import ReactTyped
+// import SoonImage from '@/assets/Soon.png';
+// import GooglePlayImage from '@/assets/GooglePlay.png';
+// import AppStoreImage from '@/assets/AppStore.png';
+import BeatsGif from '@/assets/Beats.gif';
+import { ReactTyped } from 'react-typed';
 import { Button } from '@/components/ui/button';
+import QRCode from "@/assets/QRCode.jpeg"
+
 const Appdownload = () => {
     const [isDialogOpen, setDialogOpen] = useState(false);
 
@@ -62,20 +64,14 @@ const Appdownload = () => {
                             Get Jamme
                         </Button>
                     </DialogTrigger>
-                    <DialogContent className="bg-[#25a6e8] border-none h-auto">
-                        <DialogTitle className="text-center text-2xl font-light tracking-wider">
-                            Coming Soon on
+                    <DialogContent className="bg-[#25a6e8] border-none h-auto max-w-2xl">
+                        <DialogTitle className="text-center text-xl  tracking-wider font-medium mt-4">
+                            Sign up now! This exclusive social app is invite-only
                         </DialogTitle>
                         {/* Images inside the dialog */}
                         <div className="flex flex-col justify-center items-center">
-                            <img src={SoonImage} alt="Soon" />
-                            <div className="flex flex-row items-center justify-center gap-4">
-                                <a href={GooglePlayImage || "#"} target="_blank" rel="noopener noreferrer">
-                                    <img src={GooglePlayImage} alt="Google Play" className="w-40" />
-                                </a>
-                                <a href={AppStoreImage || "#"} target="_blank" rel="noopener noreferrer">
-                                    <img src={AppStoreImage} alt="Apple Store" className="w-40" />
-                                </a>
+                            <div className='w-64'>
+                                <img src={QRCode} alt="Soon" className='rounded-3xl' />
                             </div>
                         </div>
                     </DialogContent>
@@ -84,5 +80,15 @@ const Appdownload = () => {
         </div>
     );
 };
-
 export default Appdownload;
+// <div className="flex flex-col justify-center items-center">
+// <img src={SoonImage} alt="Soon" />
+// <div className="flex flex-row items-center justify-center gap-4">
+//     <a href={GooglePlayImage || "#"} target="_blank" rel="noopener noreferrer">
+//         <img src={GooglePlayImage} alt="Google Play" className="w-40" />
+//     </a>
+//     <a href={AppStoreImage || "#"} target="_blank" rel="noopener noreferrer">
+//         <img src={AppStoreImage} alt="Apple Store" className="w-40" />
+//     </a>
+// </div>
+// </div>
