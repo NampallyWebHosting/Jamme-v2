@@ -22,7 +22,7 @@ export function Confirmation() {
           </AlertDialogTitle>
         </AlertDialogHeader>
         <div className="text-base font-medium text-center lg:w-96">
-          Stay tuned! We’ll notify you as soon as the app launches, and the first lukcy 100 will snag a pair of AirPods!
+          Stay tuned! We’ll notify you as soon as the app launches, and the first lucky 100 will snag a pair of AirPods!
         </div>
         <div className="mt-4">
           <Button
