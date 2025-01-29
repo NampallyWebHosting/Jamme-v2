@@ -71,7 +71,7 @@ const Appdownload = () => {
                         {/* Images inside the dialog */}
                         <div className="flex flex-col justify-center items-center">
                             <div className='w-64'>
-                                <img src={QRCode} alt="Soon" className='rounded-3xl' />
+                                <img src={QRCode} alt="QR code" className='rounded-3xl' />
                             </div>
                         </div>
                     </DialogContent>
