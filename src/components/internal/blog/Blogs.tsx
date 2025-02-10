@@ -153,6 +153,99 @@ const Blogs: React.FC = () => {
               - Saandip Mytreya N
             </p>
           </article>
+
+          {/* Blog 5 */}
+          <article className="w-full flex flex-col items-start gap-3">
+            <img
+              src="https://saandip-mytreya.notion.site/image/attachment%3Adbebab85-5fd8-40fd-a491-e0b4c35ff44b%3AScreenshot_2025-02-06_at_01.16.49.png?table=block&id=191d0dae-4db6-80f4-afde-fd682737c802&spaceId=af3f3025-5d03-4274-97f0-39266345e51c&width=1420&userId=&cache=v2" // Replace with actual image source
+              alt="If the USA, UAE and China Can, Why Not India?"
+              className="w-full h-auto object-cover aspect-video rounded-xl"
+            />
+            <h2 className="text-left w-full text-xl font-medium text-[#232323]">
+              If the USA, UAE and China Can, Why Not India?
+            </h2>
+            <div className="w-full flex flex-col items-start justify-start mt-4 gap-4">
+              <p>
+                A question that has been making rounds in blogs and vlogs lately is:
+                <i> If the USA, UAE and China can, why not India?</i> The answer is simple yet crucial - India’s mindsets and budgets are not enough.
+                The country should allocate at least 10% of its GDP to research and development (R&D) to drive real innovation.
+              </p>
+
+              <h3 className="text-lg font-semibold">The Ecosystem Challenge: Why Silicon Valley and Shenzhen Are Ahead</h3>
+              <p>
+                Even today, Silicon Valley stands unmatched in its appreciation for groundbreaking ideas. Dubai and Shenzhen too, offer a similar ecosystem.
+                Unfortunately, India’s ecosystem has yet to fully evolve to this level.
+              </p>
+              <p>
+                A new generation of investors is needed to bridge this gap. While the country overflows with ideas, the support systems - be it angel funds,
+                VC funds, government grants, or university-backed initiatives - have not yet matured enough to truly nurture and drive innovation.
+              </p>
+
+              <h3 className="text-lg font-semibold">Indian Startups: A Reflection on Originality</h3>
+              <p>
+                Indian startups and businesses need to reflect: <i>How original are we, really?</i> The standout innovations from India in the last two
+                decades can be counted on one hand - such as UPI, the COVID-19 vaccines, and Chandrayaan III by ISRO.
+              </p>
+              <p>
+                To foster more visionaries like Nandan, Adar, and Veeramuthuvel, government grants, subsidies, and university funding must play a larger
+                role in supporting entrepreneurs. Unfortunately, many Indian investors still follow a "Marwari max 3%" mindset, prioritizing safety and
+                short-term profits over long-term growth.
+              </p>
+
+              <h3 className="text-lg font-semibold">The Mimicry Trap: Copying Rather Than Creating</h3>
+              <p>
+                Indian startups often fall into a pattern of mimicry and imitation. The West creates Uber; we respond with Ola. Airbnb paves the way, and
+                we come up with Oyo. Amazon inspires Flipkart, and OpenAI leads to Sarvam. Even large IT giants like TCS and Infosys raise the question:
+                where are their innovation hubs, think tanks, and groundbreaking original ideas?
+              </p>
+
+              <h3 className="text-lg font-semibold">Noteworthy Success Stories vs. Overhyped Narratives</h3>
+              <p>
+                In recent times, we must acknowledge and appreciate success stories like Wingify. Paras Chopra built a million-dollar company without
+                relying on seed funding.
+              </p>
+              <p>
+                On the other hand, we see the overhyped narrative surrounding startups like BYJU'S. Despite raising significant funding, Koo failed to
+                deliver meaningful value, remaining a regional replica rather than evolving into a global competitor.
+              </p>
+
+              <h3 className="text-lg font-semibold">Building a Culture of Technological Patriotism</h3>
+              <p>
+                Indian citizens must embrace and actively support homegrown innovations. Countries like China and Japan have set powerful examples by
+                wholeheartedly supporting their domestic tech ecosystems - India must follow suit.
+              </p>
+
+              <h3 className="text-lg font-semibold">Execution and Scalability: The Missing Link</h3>
+              <p>
+                The Indian entrepreneurial landscape often falls short in execution and global scalability. While American brands like McDonald's and
+                Starbucks thrive here, where are India’s homegrown global brands?
+              </p>
+              <p>
+                Another issue is our obsession with big statements. Claims like *“India’s largest”* or *“we’re addressing billions”* often amount to
+                nothing more than vanity metrics, with little substance in terms of real action.
+              </p>
+
+              <h3 className="text-lg font-semibold">The Need for Experimentation and Risk-Taking</h3>
+              <p>
+                Globally, we see side projects like DeepSeek AI - a $6 million, open-source initiative - challenging OpenAI’s future plans.
+                Experimentation is essential, and the West embraces it, knowing that failure is often part of the process.
+              </p>
+
+              <h3 className="text-lg font-semibold">Final Thoughts</h3>
+              <p>
+                India has predominantly been seen as a service-driven economy over the past three decades. However, the mindset of late millennials and
+                early Gen Z in India aligns more closely with the West. To break free from this narrative, we need a cultural shift that fosters
+                originality, bold execution, and a stronger commitment to long-term thinking.
+              </p>
+              <p>
+                Otherwise, we continue as CEOs and CTOs, serving the West and building their success instead of our own.
+              </p>
+            </div>
+            <p className="text-base font-medium text-[#232323]">
+              Saandip Mytreya N
+            </p>
+          </article>
+          <div className="w-full h-[2px] bg-[#232323]"></div>
         </main>
       </div>
     </>
